@@ -15,33 +15,44 @@ class railway_ticket:
                 to_destination=input('enter to destination:')
                 if self.from_to_destinations[from_destination][0]==to_destination:
                     no_of_tickets=int(input('please enter no of tickets:'))
-                    amount=self.from_to_destinations[from_destination][1]*no_of_tickets
-                    for i in range(no_of_tickets):
-                        name=input('enter person name:')
-                        seats=random.randint(1,100)
-                        print(i+1,name)
-                        self.persons.append(name)
-                        self.persons.append(seats)
-                    print(self.persons)
-                    print('Tickets booked successfully')
-                    print('-'*7,'Ticket details','-'*7)
-                    print(from_destination,'-',to_destination)           
-                    if len(self.persons)>=1:
-                        for i in range(len(self.persons)):
-                            if i%2==0:
-                                print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))         
-                        print('Amount paid ',amount,'/-',sep='')
-                        print('-'*7,'Happy Journey','-'*7)
-                        break     
+                    if self.from_to_destinations[from_destination][2]>=no_of_tickets:
+                        self.from_to_destinations[from_destination][2]=self.from_to_destinations[from_destination][2]-no_of_tickets
+                        #print(self.from_to_destinations)
+                        amount=self.from_to_destinations[from_destination][1]*no_of_tickets
+                        for i in range(no_of_tickets):
+                            name=input('enter person name:')
+                            seats=random.randint(1,100)
+                            print(i+1,name)
+                            self.persons.append(name)
+                            self.persons.append(seats)
+                        print(self.persons)
+                        print('Tickets booked successfully')
+                        print('-'*7,'Ticket details','-'*7)
+                        print(from_destination,'-',to_destination)           
+                        if len(self.persons)>=1:
+                            for i in range(len(self.persons)):
+                                if i%2==0:
+                                    print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))         
+                            print('Amount paid ',amount,'/-',sep='')
+                            print('-'*7,'Happy Journey','-'*7)
+                            break
+                    else:
+                        print('{} seats left {} - {} you can check in tickets available section'.format(self.from_to_destinations[from_destination][2],from_destination,to_destination))
+                        x1=eval(input('if you don want to buy tickets press-1 press any other key to buy'))
+                        if x1==1:
+                            print('logged out successfully')
+                            break    
                 else:
                     print(from_destination,'-',to_destination,'is not available please check tickets available section')
-                    x=input("if you dont want to buy tickets click 'N' if you want to buy press any other key:")
-                    if x=='N':
+                    x1=input("if you dont want to buy tickets click 'n' if you want to buy press any other alphabet:")
+                    if x1=='n':
+                        print('logged out successfully')
                         break
             else:
                 print('please check tickets available section')
-                x=input("if u dont want to buy tickets click 'N' if you want to buy press any other key:")
-                if x=='N':
+                x1=input("if u dont want to buy tickets click 'n' if you want to buy press any other alphabet:")
+                if x1=='n':
+                    print('logged out successfully')
                     break                
 
 import random
