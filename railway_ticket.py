@@ -26,16 +26,33 @@ class railway_ticket:
                             self.persons.append(name)
                             self.persons.append(seats)
                         print(self.persons)
-                        print('Tickets booked successfully')
-                        print('-'*7,'Ticket details','-'*7)
-                        print(from_destination,'-',to_destination)           
-                        if len(self.persons)>=1:
-                            for i in range(len(self.persons)):
-                                if i%2==0:
-                                    print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))         
-                            print('Amount paid ',amount,'/-',sep='')
-                            print('-'*7,'Happy Journey','-'*7)
-                            break
+                        print('Tickets price:{}/-'.format(amount))
+                        acc_no=int(input('enter your account no:'))
+                        if acc_no in credentials:
+                            if credentials[acc_no][1]>=amount:
+                                pin=int(input('enter your pin:'))
+                                if credentials[acc_no][0]==pin:
+                                    print('Transaction successfull')
+                                    credentials[acc_no][1]=credentials[acc_no][1]-amount
+                                    print('Tickets booked successfully')
+                                    print('-'*7,'Ticket details','-'*7)
+                                    print(from_destination,'-',to_destination)           
+                                    if len(self.persons)>=1:
+                                        for i in range(len(self.persons)):
+                                            if i%2==0:
+                                                print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))         
+                                        print('Amount paid ',amount,'/-',sep='')
+                                        print('-'*7,'Happy Journey','-'*7)
+                                        break
+                                else:
+                                    print('wrong pin entered')
+                                    self.persons.clear()
+                            else:
+                                print('insufficient balance')
+                                self.persons.clear()
+                        else:
+                            print('wrong account no')
+                            self.persons.clear()
                     else:
                         print('{} seats left {} - {} you can check in tickets available section'.format(self.from_to_destinations[from_destination][2],from_destination,to_destination))
                         x1=eval(input('if you don want to buy tickets press-1 press any other key to buy'))
@@ -57,6 +74,8 @@ class railway_ticket:
 
 import random
 users={'naveen':'123','krishna':'456'}
+credentials={902475:[3579,2000],902685:[7651,2500]}
+#902475-acc no,3579-pin,2000-balance
 username=input('enter username:')
 if username in users:
     password=input('enter your password:')
