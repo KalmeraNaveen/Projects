@@ -35,14 +35,17 @@ class railway_ticket:
                                     print('Transaction successfull')
                                     credentials[acc_no][1]=credentials[acc_no][1]-amount
                                     print('Tickets booked successfully')
-                                    print('-'*7,'Ticket details','-'*7)
-                                    print(from_destination,'-',to_destination)           
+                                    print('-'*20,'Ticket details','-'*20)
+                                    import datetime
+                                    print(from_destination,'-',to_destination,format(' ','<17'),'Date:',datetime.datetime.now().strftime("%d-%m-%y"))
                                     if len(self.persons)>=1:
                                         for i in range(len(self.persons)):
-                                            if i%2==0:
-                                                print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))         
+                                            if (i%2==0) and (i==0):
+                                                print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'),format(' ','<7'),'Time:',datetime.datetime.now().strftime("%H:%M:%S"))
+                                            elif i%2==0:
+                                                print(format('name:','<7'),format(self.persons[i],'<7'),format('seat no:','<7'),format(self.persons[i+1],'<7'))
                                         print('Amount paid ',amount,'/-',sep='')
-                                        print('-'*7,'Happy Journey','-'*7)
+                                        print('-'*20,'Happy Journey','-'*20)
                                         break
                                 else:
                                     print('wrong pin entered')
