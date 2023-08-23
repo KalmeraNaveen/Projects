@@ -71,8 +71,9 @@ while True:
         if len(d)>=1:
             print('-'*40,'Bill','-'*40)
             print(' '*40,'Dmart',' '*39)
-            print('Name:',name)
-            print('Address:',loc)
+            import datetime
+            print('Name:',format(name,'<1'),format(' ','<30'),'Date:',datetime.datetime.now().strftime("%d-%m-%y"))
+            print('Address:',format(loc,'<1'),format(' ','<30'),'Time:',datetime.datetime.now().strftime("%H:%M:%S"))
             print()
             print(format('sno','<21'),format('Item','<21'),format('Qty','<21'),format('price','<21'))
             ab=0
